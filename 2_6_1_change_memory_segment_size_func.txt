@@ -1,0 +1,17 @@
+// изменение размера области памяти
+
+char *resize(const *str, unsigned sie, unsigned new_size)
+{
+ char* res = new char[new_size]; // выделила память
+ unsigned final_size = (new_size >= size) ? size : new_size; // итоговый размер для копирования
+ 
+ // копирование
+ for (int i = 0; i < final_size; i++)
+ {
+  res[i] = *(str+i);
+ }
+
+ delete[] str; // очистила память
+
+ return res;
+}
