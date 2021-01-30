@@ -1,0 +1,22 @@
+// const int* const* m - это интовый указатель на постоянный указатель на инт 
+int** Transpose(const int* const* m, unsigned rows, unsigned cols)
+{
+	// выделение памяти под новую траспонированную матрицу
+	int** m_trnsp = new int* [cols];
+	m_trnsp[0] = new int[rows * cols];
+	for (int i = 1; i < cols; i++)
+	{
+		m_trnsp[i] = m_trnsp[i-1] + rows;
+	}
+
+	// меняю местами элементы матрицы
+	for (int j = 0; j < cols; j++)
+	{
+		for (int k = 0; k < rows; k++)
+		{
+			m_trnsp[j][k] = m[k][j];
+		}
+	}
+
+	return m_trnsp;
+}
