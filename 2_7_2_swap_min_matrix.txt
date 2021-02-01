@@ -1,0 +1,78 @@
+#include <iostream>
+#include <cstdlib>
+// меняет естами строку с минимальным эл-том и первую
+// 1ый аргумент - одномерный динамически заданный массив указателей на одномерные массивы = указатель на 1ый эл-т массива
+void swap_min(int* m[], unsigned rows, unsigned cols)
+{
+	//// вывод массива в консоль
+	//for (int i = 0; i < rows; i++)
+	//{
+	//	for (int j = 0; j < cols; j++)
+	//	{
+	//		std::cout << m[i][j]<< " ";
+	//	}
+	//	std::cout << std::endl;
+	//}
+
+	//// пример обмена строками
+	//int* tmp;
+	//tmp = m[0];
+	//m[0] = m[1];
+	//m[1] = tmp;
+
+	// индекс минимальной строки
+	int min_row_ind = 0;
+	int min_col_ind = 0;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (m[i][j] < m[min_row_ind][min_col_ind])
+			{
+				min_row_ind = i;
+				min_col_ind = j;
+			}
+		}
+	}
+
+	int* tmp = m[0];
+	m[0] = m[min_row_ind];
+	m[min_row_ind] = tmp;
+
+	//// вывод массива в консоль
+	//for (int i = 0; i < rows; i++)
+	//{
+	//	for (int j = 0; j < cols; j++)
+	//	{
+	//		std::cout << m[i][j]<< " ";
+	//	}
+	//	std::cout << std::endl;
+	//}
+
+}
+
+int main()
+{
+	int m = 2, n = 3;
+	// двумерный массив
+	int** arr = new int* [m];
+	arr[0] = new int[m * n];
+	for (int i = 1; i < m; i++)
+	{
+		arr[i] = arr[i-1] + n;
+	}
+	int k = 0;
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			arr[i][j] = k;;
+		}
+		//k = -3;
+	}
+
+	swap_min(arr, m, n);
+
+	system("pause");
+	return 0;
+}
