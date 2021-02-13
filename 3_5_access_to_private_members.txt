@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstddef> // size_t
+#include <cstring> // strlen, strcopy
+
+struct Cls
+{
+	Cls(char c, double d, int i);
+private:
+	char c;
+	double d;
+	int i;
+};
+
+struct Twin
+{
+	Twin(char c, double d, int i);
+
+	char c;
+	double d;
+	int i;
+};
+
+char &get_c(Cls& cls)
+{
+	return ((Twin*)&cls)->c;
+}
+
+int main()
+{
+	system("pause");
+	return 0;
+}
